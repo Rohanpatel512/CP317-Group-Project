@@ -1,14 +1,16 @@
 public class Product {
     //private vars from Product Documentation
     private int SupplierID;
+    private int ProductID;
     private String ProductName;
     private int Quantity;
     private Double Price;
     private String Status;
 
     //constructor for connecting to ApplicationFrame Data
-    public Product(int supplierID, String productName, int quantity, double price, string status) {
+    public Product(int supplierID, int ProductID, String productName, int quantity, double price, string status) {
         this.SupplierID = supplierID;
+        this.ProductID = productID;
         this.ProductName = productName;
         this.Quantity = quantity;
         this.Price = price;
@@ -21,16 +23,25 @@ public class Product {
     }
 
     public void setSupplierID(int supplierID) {
-        SupplierID = supplierID;
+        this.SupplierID = supplierID;
+    }
+
+    //ProductID getter & setter
+    public int getProductID() {
+        return ProductID;
+    }
+
+    public void setProductID(int productID) {
+        this.ProductID = productID;
     }
 
     //ProductName getter & setter
-    public int getProductName() {
+    public String getProductName() {
         return ProductName;
     }
 
     public void setProductName(String productName) {
-        ProductName = productName;
+        this.ProductName = productName;
     }
 
     //Quantity getter & setter
@@ -39,7 +50,7 @@ public class Product {
     }
 
     public void setQuantity(int quantity) {
-        Quantity = quantity;
+        this.Quantity = quantity;
     }
 
     //Price getter & setter
@@ -48,15 +59,15 @@ public class Product {
     }
 
     public void setPrice(double price) {
-        Price = price;
+        this.Price = price;
     }
 
     //Status getter & setter
-    public string getStatus() {
+    public String getStatus() {
         return Status;
     }
 
-    public void setStatus(string status) {
-        Status = status;
+    public void setStatus(String status) {
+        this.Status = status;
     }
 }
