@@ -1,73 +1,73 @@
 public class Product {
     //private vars from Product Documentation
-    private int SupplierID;
-    private int ProductID;
-    private String ProductName;
-    private int Quantity;
-    private Double Price;
-    private String Status;
+    private int supplierID;
+    private int productID;
+    private String productName;
+    private int quantity;
+    private Double price;
+    private String status;
 
     //constructor for connecting to ApplicationFrame Data
-    public Product(int supplierID, int ProductID, String productName, int quantity, double price, string status) {
-        this.SupplierID = supplierID;
-        this.ProductID = productID;
-        this.ProductName = productName;
-        this.Quantity = quantity;
-        this.Price = price;
-        this.Status = status;
+    public Product(int supplierID, int productID, String productName, int quantity, double price, String status) {
+        this.supplierID = supplierID;
+        this.productID = productID;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+        this.status = status;
     }
 
     //SupplierID getter & setter
     public int getSupplierID() {
-        return SupplierID;
+        return this.supplierID;
     }
 
     public void setSupplierID(int supplierID) {
-        this.SupplierID = supplierID;
+        this.supplierID = supplierID;
     }
 
     //ProductID getter & setter
     public int getProductID() {
-        return ProductID;
+        return this.productID;
     }
 
     public void setProductID(int productID) {
-        this.ProductID = productID;
+        this.productID = productID;
     }
 
     //ProductName getter & setter
     public String getProductName() {
-        return ProductName;
+        return this.productName;
     }
 
     public void setProductName(String productName) {
-        this.ProductName = productName;
+        this.productName = productName;
     }
 
     //Quantity getter & setter
     public int getQuantity() {
-        return Quantity;
+        return this.quantity;
     }
 
     public void setQuantity(int quantity) {
-        this.Quantity = quantity;
+        this.quantity = quantity;
     }
 
     //Price getter & setter
     public double getPrice() {
-        return Price;
+        return this.price;
     }
 
     public void setPrice(double price) {
-        this.Price = price;
+        this.price = price;
     }
 
     //Status getter & setter
     public String getStatus() {
-        return Status;
+        return this.status;
     }
 
     public void setStatus(String status) {
-        this.Status = status;
+        this.status = status;
     }
 }
