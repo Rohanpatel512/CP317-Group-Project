@@ -1,6 +1,8 @@
 import java.util.ArrayList;
-import java.io.File;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.FileNotFoundException;
 
 public class FileHelper {
@@ -53,10 +55,10 @@ public class FileHelper {
 
         //Store all information in its respective variable
         productID = Integer.parseInt(line[0].strip());
-        productName = line[1];
+        productName = line[1].strip();
         price = convertPrice(line[3]);
         quantity = Integer.parseInt(line[4].strip());
-        status = line[5];
+        status = line[5].strip();
         supplierID = Integer.parseInt(line[6].strip());
         
         //Store info in a product variable and add it to products
@@ -118,5 +120,101 @@ public class FileHelper {
         }
 
         return suppliers;
+  }
+
+  /*
+   * pre:
+   *  - prodcuts: array list of product objects
+   *  - suppliers: array list of supplier object
+   * post:
+   *  N/A
+   * desc:
+   *  -  takes a list of products and suppliers and uses them to 
+   *  write to a new inventory.txt file of inventory items
+   */
+  public void WriteInventory(ArrayList<Product> products, ArrayList<Supplier> suppliers) {
+    //Initialize array list of inventory items by merging the product and supplier lists
+    ArrayList<Inventory> inventory = merge(products, suppliers);
+
+    try {
+      //set up file writer to write to file
+      File file = new File("src\\inventory.txt");
+      FileWriter writer = new FileWriter(file);
+
+      for (Inventory item : inventory) {
+        //write all the information delimited by commas
+        writer.write(item.getProductID() + "," + item.getProductName()
+         + "," + item.getQuantity() + "," + item.getPrice()
+          + "," + item.getStatus() + "," + item.getSupplierName() + "\n");
+      }
+
+      //close the fileWriter
+      writer.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /*
+   * pre:
+   *  - products: array list of product items
+   *  - suppliers: array list of supplier items
+   * post:
+   *  - inventory: array list of inventory items given the
+   *  product and suppliier lists
+   */
+  private ArrayList<Inventory> merge(ArrayList<Product> products, ArrayList<Supplier> suppliers) {
+    //Initialize inventory list
+    ArrayList<Inventory> inventory = new ArrayList<Inventory>();
+
+    //Create temporary inventoryItem
+    Inventory inventoryItem;
+
+    //Create temporary supplier and product items
+    Supplier supplier;
+    Product product;
+
+    //Create inventory attributes
+    int productID;
+    String productName;
+    int quantity;
+    double price;
+    String status;
+    String supplierName;
+
+    //loops through the list of products
+    for (int i = 0; i < products.size(); i++) {
+      //grab the product information
+      product = products.get(i);
+      productID = product.getProductID();
+      productName = product.getProductName();
+      quantity = product.getQuantity();
+      price = product.getPrice();
+      status = product.getStatus();
+
+      //get the supplier name by the product's supplier ID
+      supplier = getSupplierById(suppliers, product.getSupplierID());
+      supplierName = supplier.getSupplierName();
+
+      //Create the inventory item and add it to the list
+      inventoryItem = new Inventory(productID, productName, quantity, price, status, supplierName);
+      inventory.add(inventoryItem);
+    }
+
+    return inventory;
+  }
+
+  //Function to return a supplier from a list of supplier given its ID
+  private Supplier getSupplierById(ArrayList<Supplier> suppliers, int supplierID) {
+    Supplier supplier = new Supplier(0, "");
+
+    for (int i = 0; i < suppliers.size(); i++) {
+      if (suppliers.get(i).getSupplierID() == supplierID) {
+        supplier = new Supplier(suppliers.get(i).getSupplierID(), suppliers.get(i).getSupplierName());
+        break;
+      }
+    }
+
+    return supplier;
   }
 }
