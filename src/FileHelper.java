@@ -68,16 +68,7 @@ public class FileHelper {
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
-    
-    for (Product item : products) {
-      System.out.print(" sID: " + item.getSupplierID());
-      System.out.print(" pID: " + item.getProductID());
-      System.out.print(" pName: " + item.getProductName());
-      System.out.print(" quantity: " + item.getQuantity());
-      System.out.print(" price: " + item.getPrice());
-      System.out.print(" stats: " + item.getStatus());
-      System.out.println();
-    }
+  
     return products;
   }
 }
