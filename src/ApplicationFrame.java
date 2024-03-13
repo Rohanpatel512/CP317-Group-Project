@@ -15,7 +15,8 @@ public class ApplicationFrame extends JFrame {
      */
     public ApplicationFrame() {
         this.setTitle("Data Format Application");
-        this.setSize(500, 500);
+        this.setSize(500, 200);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.WHITE);
@@ -35,39 +36,75 @@ public class ApplicationFrame extends JFrame {
         JPanel centerPanel = new JPanel();
 
         // Set the size of textfields
-        this.productInput.setColumns(10);
-        this.supplierInput.setColumns(10);
+        this.productInput.setColumns(50);
+        this.supplierInput.setColumns(50);
         
         // Sets the size and layout of center component panel
-        centerPanel.setPreferredSize(new Dimension(250, 500));
-        centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
+        centerPanel.setPreferredSize(new Dimension(100, 500));
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+
+        // Set the size of JTextFields
+        productInput.setMaximumSize(productInput.getPreferredSize());
+        supplierInput.setMaximumSize(productInput.getPreferredSize());
 
         // Helper method to place JLabels on top of text fields
-        addLabels(centerPanel);
+        addProductLabel(centerPanel);
 
         // Add the textfields and button to center panel
         centerPanel.add(productInput);
+        addSupplierLabel(centerPanel);
         centerPanel.add(supplierInput);
         centerPanel.add(createButton);
 
-        this.add(centerPanel, BorderLayout.PAGE_START);
+        this.add(centerPanel);
 
     }
 
     /**
-     * Helper method that adds labels on top of text fields
+     * Helper method that adds product label on top of corresponding text field
      * @params center panel (JPanel)
      */
-    private void addLabels(JPanel centerPanel) {
+    private void addProductLabel(JPanel centerPanel) {
 
         JLabel productLabel = new JLabel("Enter path to product data file");
-        JLabel supplierLabel = new JLabel("Enter path to supplier data file");
-
         centerPanel.add(productLabel);
-        centerPanel.add(supplierLabel);
-
 
     }
 
+    /**
+     * Helper method that adds supplier label on top of corresponding text field
+     * @params center panel (JPanel)
+     */
+    private void addSupplierLabel(JPanel centerPanel) {
+        
+        JLabel supplierLabel = new JLabel("Enter path to supplier data file");
+        centerPanel.add(supplierLabel);
+    }
+
+    /**
+     * Gets the input from product textfield
+     * @returns productPath - The path to the product data file 
+     */
+    public String getProductPath() {
+        String productPath = productInput.getText();
+        return productPath;
+    }
+
+    /**
+     * Gets the input from supplier textfield
+     * @returns supplierPath - The path to the supplier data file
+     */
+    public String getSupplierPath() {
+        String supplierPath = supplierInput.getText();
+        return supplierPath;
+    }
+
+    /**
+     * Gets the create button 
+     * @returns createButton - The button that creates the formatted data file.
+     */
+    public JButton getCreateButton() {
+        return this.createButton;
+    }
 
 }
