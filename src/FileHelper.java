@@ -71,4 +71,52 @@ public class FileHelper {
   
     return products;
   }
+
+    /*
+   * Pre:
+   *  - file : a string representing the file path to suppliers.txt
+   * Post:
+   *  - Supplier : an array list of suppliers storing all the suppliers from products.txt
+   * Desc:
+   *  Parses suppliers.txt file given its file path and returns all of its
+   *  suppliers in an arraylist  
+   */
+  public ArrayList<Supplier> ReadSuppliers(String file) {
+        //Initialize list of products
+        ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
+    
+        try {
+          //Set up the scanner object to parse the file
+          File filename = new File(file);
+          scanner = new Scanner(filename);
+          
+          //Initialize a supplier's attributes
+          int supplierID;
+          String supplierName;
+    
+          //Initalize supplier object to store temporary supplier info
+          Supplier supplier;
+          //String to store each attribute from a line of information in suppliers file
+          String[] line;
+    
+          while (scanner.hasNextLine()) {
+            //Split up the line by its commas
+            line = scanner.nextLine().split(",");
+    
+            //Store all information in its respective variable
+            supplierID = Integer.parseInt(line[0].strip());
+            supplierName = line[1].strip();
+            
+            //Store info in a Supplier variable and add it to suppliers
+            supplier = new Supplier(supplierID, supplierName);
+    
+            suppliers.add(supplier);
+          }
+    
+        } catch (FileNotFoundException e) {
+          e.printStackTrace();
+        }
+
+        return suppliers;
+  }
 }
