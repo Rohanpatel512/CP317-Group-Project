@@ -1,38 +1,70 @@
-import java.util.ArrayList;
-
 public class Inventory {
 
     // Fields
-    private int supplierID;
+    private int productID;
+    private String productName;
     private int quantity;
     private double price;
-    private String productName;
     private String status;
     private String supplierName;
 
     /**
      * Constructor for the inventory class
      */
-    public Inventory() {
-
+    public Inventory(int productID, String productName, int quantity, double price, String status, String supplierName) {
+        this.productID = productID;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+        this.status = status;
+        this.supplierName = supplierName;
     }
 
-    /**
-     * Combines the columns that will be placed in formated file.
-     * @returns an array of all the columns that were combined
-     */
-    private ArrayList<Integer> combineColumns() {
+    public int getProductID() {
+        return this.productID;
+    }
 
-        return null;
-        
-    }  
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
 
-    /**
-     * Places all columns into a file
-     */
-    private void columnsToFile() {
+    public String getProductName() {
+        return this.productName;
+    }
 
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSupplierName() {
+        return this.supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }   
-
 }
