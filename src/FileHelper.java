@@ -196,13 +196,41 @@ public class FileHelper {
       supplier = getSupplierById(suppliers, product.getSupplierID());
       supplierName = supplier.getSupplierName();
 
-      //Create the inventory item and add it to the list
+      //Create the inventory item and add it to the list by product ID
       inventoryItem = new Inventory(productID, productName, quantity, price, status, supplierName);
-      inventory.add(inventoryItem);
+      insertSorted(inventory, inventoryItem);
     }
 
     return inventory;
   }
+
+  //Function to insert an inventory item into the inventory list sorted by its
+  //product ID
+  private void insertSorted(ArrayList<Inventory> inventory, Inventory item) {
+    //If the list is empty, simply add the item
+    if (inventory.size() == 0) {
+      inventory.add(item);
+    } else {
+      //Loop through the list and insert the item once the current
+      //item's product ID is less than or equal to the current one
+      int i;
+      for (i = 0; i < inventory.size(); i++) {
+        if (item.getProductID() <= inventory.get(i).getProductID()) {
+          inventory.add(i, item);
+          break;
+        }
+      }
+
+      //If the item's product ID is greater than all IDs 
+      //currently in the list then it would parse through
+      //the list and not add it. This check makes sure that
+      //does not happen
+      if (i == inventory.size()) {
+        inventory.add(item);
+      }
+    }
+  }
+
 
   //Function to return a supplier from a list of supplier given its ID
   private Supplier getSupplierById(ArrayList<Supplier> suppliers, int supplierID) {
