@@ -15,6 +15,11 @@ public class Supplier {
         this.emailAddress = emailAddress;
     }
 
+    public Supplier(int supplierID, String supplierName) {
+        this.supplierID = supplierID;
+        this.supplierName = supplierName;
+    }
+
     // Getters
     public int getSupplierID() {
         return this.supplierID;
