@@ -61,6 +61,14 @@ public class ApplicationFrame extends JFrame {
     }
 
     /**
+     * Displays error if either supplier path or product path are invalid
+     * @param filePath - The path of file that wasn't found
+     */
+    public void displayErrorMessage(String filename) {
+        JOptionPane.showMessageDialog(this, "Cannot find file " + filename, "Invalid path error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    /**
      * Helper method that adds product label on top of corresponding text field
      * @params center panel (JPanel)
      */
@@ -100,11 +108,12 @@ public class ApplicationFrame extends JFrame {
     }
 
     /**
-     * Gets the create button 
-     * @returns createButton - The button that creates the formatted data file.
+     * Gets the button from GUI 
+     * @return createButton - The GUI button user clicks on
      */
     public JButton getCreateButton() {
         return this.createButton;
     }
 
+    
 }
