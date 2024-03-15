@@ -4,11 +4,19 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
 
-public class FileHelper {
+public class FileHelper implements ActionListener {
   private Scanner scanner;
+  private ApplicationFrame frame;
+  private JButton button;
 
   public FileHelper() {
+    this.frame = new ApplicationFrame();
+    this.button = this.frame.getCreateButton();
+    this.button.addActionListener(this);
   }
 
   //private helper function to convert a formatted  
@@ -68,7 +76,7 @@ public class FileHelper {
       }
 
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      this.frame.displayErrorMessage(file);
     }
   
     return products;
@@ -116,7 +124,7 @@ public class FileHelper {
           }
     
         } catch (FileNotFoundException e) {
-          e.printStackTrace();
+          this.frame.displayErrorMessage(file);
         }
 
         return suppliers;
@@ -244,5 +252,16 @@ public class FileHelper {
     }
 
     return supplier;
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+
+    String supplierPath = this.frame.getSupplierPath();
+    String productPath = this.frame.getProductPath();
+
+    this.ReadProducts(productPath);
+    this.ReadSuppliers(supplierPath);
+
   }
 }
