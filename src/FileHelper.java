@@ -151,9 +151,9 @@ public class FileHelper implements ActionListener {
 
       for (Inventory item : inventory) {
         //write all the information delimited by commas
-        writer.write(item.getProductID() + "," + item.getProductName()
-         + "," + item.getQuantity() + "," + item.getPrice()
-          + "," + item.getStatus() + "," + item.getSupplierName() + "\n");
+        writer.write(item.getProductID() + ", " + item.getProductName()
+         + ", " + item.getQuantity() + ", " +  "$" + item.getPrice()
+          + ", " + item.getStatus() + ", " + item.getSupplierName() + "\n");
       }
 
       //close the fileWriter
