@@ -260,8 +260,11 @@ public class FileHelper implements ActionListener {
     String supplierPath = this.frame.getSupplierPath();
     String productPath = this.frame.getProductPath();
 
-    this.ReadProducts(productPath);
-    this.ReadSuppliers(supplierPath);
+    ArrayList<Product> products = this.ReadProducts(productPath);
+    ArrayList<Supplier> suppliers = this.ReadSuppliers(supplierPath);
 
+    if (products.size() > 0 && suppliers.size() > 0) {
+      this.WriteInventory(products, suppliers);
+    }
   }
 }
