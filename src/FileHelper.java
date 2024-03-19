@@ -35,7 +35,7 @@ public class FileHelper implements ActionListener {
    *  Parses products.txt file given its file path and returns all of its
    *  products in an arraylist  
    */
-  public ArrayList<Product> ReadProducts(String file) {
+  private ArrayList<Product> ReadProducts(String file) {
     //Initialize list of products
     ArrayList<Product> products = new ArrayList<Product>();
     
@@ -91,7 +91,7 @@ public class FileHelper implements ActionListener {
    *  Parses suppliers.txt file given its file path and returns all of its
    *  suppliers in an arraylist  
    */
-  public ArrayList<Supplier> ReadSuppliers(String file) {
+  private ArrayList<Supplier> ReadSuppliers(String file) {
         //Initialize list of products
         ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
     
@@ -140,7 +140,7 @@ public class FileHelper implements ActionListener {
    *  -  takes a list of products and suppliers and uses them to 
    *  write to a new inventory.txt file of inventory items
    */
-  public void WriteInventory(ArrayList<Product> products, ArrayList<Supplier> suppliers) {
+  private void WriteInventory(ArrayList<Product> products, ArrayList<Supplier> suppliers) {
     //Initialize array list of inventory items by merging the product and supplier lists
     ArrayList<Inventory> inventory = merge(products, suppliers);
 
